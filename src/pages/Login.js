@@ -2,6 +2,7 @@ import React from 'react'
 import InputField from '../components/InputField'
 import useForm from '../hooks/useForm';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 const initialForm = {
     email: '',
@@ -50,9 +51,9 @@ const Login = () => {
                 />
                 <div className='text-sm font-medium text-gray-500'>
                     ¿No registrado?
-                    <a href="index.html" className='text-pink-700 hover:underline ml-1'>
+                    <Link to="/register" className='text-pink-700 hover:underline ml-1'>
                         Crear una cuenta
-                    </a>
+                    </Link>
                 </div>
             </form>
 

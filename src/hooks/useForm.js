@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 const useForm = (initialForm, initialFormFocus) => {
     const [form, setForm] = useState(initialForm);
+    const [formFocus, setFormFocus] = useState(initialFormFocus);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -11,9 +12,33 @@ const useForm = (initialForm, initialFormFocus) => {
         });
     };
 
+    const handleFocus = (e) => {
+        const { name } = e.target;
+        setFormFocus({
+            ...formFocus,
+            [name]: true
+        });
+    };
+
+    const handleBlur = (e) => {
+        const { name } = e.target;
+        setFormFocus({
+            ...formFocus,
+            [name]: false
+        });
+    };
+
+    const creanForm = () => {
+        setForm(initialForm)
+    };
+
     return {
         form,
         handleChange,
+        formFocus,
+        handleFocus,
+        handleBlur,
+        creanForm,
     }
 }
 

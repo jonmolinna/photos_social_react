@@ -1,6 +1,7 @@
 import React from 'react'
 
-const InputField = ({ value, label, name, placeholder, type, onChange }) => {
+const InputField = ({ value, label, name, placeholder, type, onChange, onFocus, onBlur, error, message }) => {
+
     return (
         <div>
             {label && (
@@ -12,14 +13,23 @@ const InputField = ({ value, label, name, placeholder, type, onChange }) => {
                 </label>
             )}
             <input
+                id={name}
                 type={type}
-                value={value}
                 name={name}
+                value={value}
                 placeholder={placeholder}
                 onChange={onChange}
-                id={name}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md outline-pink-500 focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5'
             />
+            {
+                error && (
+                    <span className='text-sm text-red-700 font-medium'>
+                        {message}
+                    </span>
+                )
+            }
         </div>
     )
 }
