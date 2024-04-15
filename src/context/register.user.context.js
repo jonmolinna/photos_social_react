@@ -6,8 +6,9 @@ const RegisterDispatchContext = createContext();
 
 const initialState = {
     loading: false,
-    register: null,
-    errors: null,
+    register: false,
+    errors: false,
+    message: null,
 };
 
 export const RegisterProvider = ({ children }) => {

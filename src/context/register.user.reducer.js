@@ -3,27 +3,31 @@ const registerReducer = (state, action) => {
         case 'REGISTER_START': {
             return {
                 loading: true,
-                register: null,
-                errors: null
+                register: false,
+                errors: false,
+                message: null
             }
         }
         case 'REGISTER_SUCCESS':
             return {
                 loading: false,
-                register: action.payload,
-                errors: null,
+                register: true,
+                errors: false,
+                message: action.payload,
             }
         case 'REGISTER_FAILURE':
             return {
                 loading: false,
-                register: null,
-                errors: action.payload
+                register: false,
+                errors: true,
+                message: action.payload,
             }
         case 'INITIAL_STATE_REGISTER':
             return {
                 loading: false,
-                register: null,
-                errors: null,
+                register: false,
+                errors: false,
+                message: null,
             }
         default:
             return state;
