@@ -3,20 +3,29 @@ import InputField from '../components/InputField'
 import useForm from '../hooks/useForm';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import useFormInputValid from '../hooks/useFormInputValid';
 
 const initialForm = {
     email: '',
     password: '',
 };
 
+const initialFormFocus = {
+    email: false,
+    password: false,
+};
+
+const emailRegex = /^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/;
+const passwordRegex = /^[A-Za-z0-9!@#$%]{5,12}$/;
+
 const Login = () => {
-    const { form, handleChange } = useForm(initialForm);
+    const { form, handleChange, formFocus, handleFocus, handleBlur, creanForm } = useForm(initialForm, initialFormFocus);
+    const [isValidEmail] = useFormInputValid(form.email, emailRegex);
+    const [isValidPassword] = useFormInputValid(form.password, passwordRegex);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         console.log('YOOO', form)
-
     }
 
     return (
@@ -35,7 +44,10 @@ const Login = () => {
                     placeholder="name@dallase.pe"
                     label="Correo Electronico"
                     onChange={handleChange}
-
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    error={!isValidEmail && formFocus.email && form.email}
+                    message='Ingrese un correo electrónico válido.'
                 />
                 <InputField
                     type="password"
@@ -44,10 +56,14 @@ const Login = () => {
                     placeholder="••••••••"
                     label="Contraseña"
                     onChange={handleChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    error={!isValidPassword && formFocus.password && form.password}
                 />
                 <Button
                     type='submit'
                     text='Iniciar sesión'
+                    disabled={!isValidEmail || !isValidPassword}
                 />
                 <div className='text-sm font-medium text-gray-500'>
                     ¿No registrado?
@@ -56,9 +72,8 @@ const Login = () => {
                     </Link>
                 </div>
             </form>
-
         </div>
     )
 }
 
-export default Login
+export default Login;
