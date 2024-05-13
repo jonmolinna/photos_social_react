@@ -10,9 +10,12 @@ const authReducer = (state, action) => {
         }
         case 'LOGIN_SUCCESS': {
             const { auth, message } = action.payload;
+            if (auth) {
+                localStorage.setItem('photos_token', JSON.stringify(auth));
+            }
             return {
+                ...state,
                 loading: false,
-                auth,
                 errors: false,
                 message,
             }
