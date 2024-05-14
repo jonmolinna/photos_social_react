@@ -4,6 +4,7 @@ const authReducer = (state, action) => {
             return {
                 loading: true,
                 auth: null,
+                token: null,
                 errors: false,
                 message: null,
             }
@@ -14,34 +15,54 @@ const authReducer = (state, action) => {
                 localStorage.setItem('photos_token', JSON.stringify(auth));
             }
             return {
-                ...state,
                 loading: false,
+                auth: null,
+                token: null,
                 errors: false,
-                message,
+                message: message,
             }
         }
         case 'LOGIN_FAILURE': {
             return {
                 loading: false,
                 auth: null,
+                token: null,
                 errors: true,
                 message: action.payload
             }
         }
-        case 'LOGOUT': {
+        case 'ADD_TOKEN': {
             return {
-                loading: false,
+                ...state,
+                token: action.payload,
+            }
+        }
+        case 'GET_PROFILE_USER_START': {
+            return {
+                loading: true,
                 auth: null,
+                token: null,
                 errors: false,
                 message: null,
             }
         }
-        case 'INITIAL_STATE_AUTH': {
+        case 'GET_PROFILE_USER_SUCCESS': {
+            const { auth, message, token } = action.payload;
+            return {
+                loading: false,
+                auth: auth,
+                token: token,
+                errors: false,
+                message: message
+            }
+        }
+        case 'GET_PROFILE_USER_FAILURE': {
             return {
                 loading: false,
                 auth: null,
-                errors: false,
-                message: null,
+                token: null,
+                errors: true,
+                message: action.payload,
             }
         }
         default:

@@ -7,6 +7,7 @@ const AuthDispatchContext = createContext();
 const initialState = {
     loading: false,
     auth: null,
+    token: null,
     errors: false,
     message: null,
 };

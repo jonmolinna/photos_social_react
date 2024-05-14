@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { axiosPrivate } from '../utils/axios';
+import { useAuthState } from '../context/authentication.context';
 
 const useAxiosPrivate = () => {
-    const token = localStorage.getItem('photos_token');
-    console.log('aQUI', token);
+    const { token } = useAuthState();
 
     useEffect(() => {
         const requestIntercept = axiosPrivate.interceptors.request.use(
