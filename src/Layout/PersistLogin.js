@@ -1,20 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import useToken from '../hooks/useToken';
-import useProfile from '../hooks/useProfile';
+import { useAuthState } from '../context/authentication.context';
 
 const PersistLogin = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const token = useToken();
-    const profile = useProfile();
+    const { token: isToken } = useAuthState();
 
     useEffect(() => {
-        token();
-        profile();
-    }, [token, profile]);
+        let isMounted = true;
+
+        const verifyToken = () => {
+            try {
+                token();
+
+            } catch (error) {
+            }
+            finally {
+                isMounted && setIsLoading(false);
+            }
+        };
+
+        !isToken ? verifyToken() : setIsLoading(false)
+
+    }, [token, isToken])
 
     return (
         <>
-            <Outlet />
+            {
+                isLoading ? <p>Loading ...</p> : <Outlet />
+            }
         </>
     )
 }

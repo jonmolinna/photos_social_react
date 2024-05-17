@@ -4,6 +4,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import PersistLogin from './Layout/PersistLogin';
+import ProfileUser from './Layout/ProfileUser';
+import RequireAuth from './Layout/RequireAuth';
 
 function App() {
   return (
@@ -15,7 +17,11 @@ function App() {
 
         {/* Rutas Privadas */}
         <Route element={<PersistLogin />}>
-          <Route path='' element={<Home />} />
+          <Route element={<ProfileUser />}>
+            <Route element={<RequireAuth />}>
+              <Route path='/' element={<Home />} />
+            </Route>
+          </Route>
         </Route>
 
         {/* Error 404 */}

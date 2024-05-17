@@ -37,32 +37,22 @@ const authReducer = (state, action) => {
                 token: action.payload,
             }
         }
-        case 'GET_PROFILE_USER_START': {
+        case 'GET_PROFILE_START': {
             return {
-                loading: true,
+                ...state,
                 auth: null,
-                token: null,
-                errors: false,
-                message: null,
             }
         }
-        case 'GET_PROFILE_USER_SUCCESS': {
-            const { auth, message, token } = action.payload;
+        case 'GET_PROFILE_SUCCESS': {
             return {
-                loading: false,
-                auth: auth,
-                token: token,
-                errors: false,
-                message: message
+                ...state,
+                auth: action.payload,
             }
         }
         case 'GET_PROFILE_USER_FAILURE': {
             return {
-                loading: false,
+                ...state,
                 auth: null,
-                token: null,
-                errors: true,
-                message: action.payload,
             }
         }
         default:

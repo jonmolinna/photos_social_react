@@ -1,4 +1,5 @@
 import { useAuthDispatch } from '../context/authentication.context';
+
 const useToken = () => {
     const dispatch = useAuthDispatch();
     const tokenString = localStorage.getItem('photos_token')
