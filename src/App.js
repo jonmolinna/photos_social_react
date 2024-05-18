@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import PersistLogin from './Layout/PersistLogin';
 import ProfileUser from './Layout/ProfileUser';
 import RequireAuth from './Layout/RequireAuth';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route element={<ProfileUser />}>
             <Route element={<RequireAuth />}>
               <Route path='/' element={<Home />} />
+              <Route path='/profile' element={<Profile />} />
             </Route>
           </Route>
         </Route>

@@ -1,12 +1,30 @@
 import React from 'react';
+import BodyPages from '../Layout/BodyPages';
 
 const Home = () => {
 
-
     return (
-        <div>
-            <p>Hola Home</p>
-        </div>
+        <BodyPages>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+            <p>Hola Mundo desde Home</p>
+        </BodyPages>
     )
 };
 
