@@ -1,29 +1,23 @@
 import React from 'react';
 import BodyPages from '../Layout/BodyPages';
+import Card from '../components/Card';
 
 const Home = () => {
 
     return (
         <BodyPages>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
-            <p>Hola Mundo desde Home</p>
+            <div className='pt-20'>
+                <div className='space-y-4'>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
+            </div>
         </BodyPages>
     )
 };

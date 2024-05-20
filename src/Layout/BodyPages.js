@@ -7,8 +7,10 @@ const BodyPages = ({ children }) => {
             <Navbar />
             {
                 Children.map(children, child => (
-                    <div>
-                        {child}
+                    <div className='bg-gray-100'>
+                        <div className='max-w-screen-sm mx-auto'>
+                            {child}
+                        </div>
                     </div>
                 ))
             }
