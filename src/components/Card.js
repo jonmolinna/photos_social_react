@@ -4,8 +4,12 @@ import { CiHeart } from "react-icons/ci";
 import { CiChat1 } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 import { CiPaperplane } from "react-icons/ci";
+import { CapitalizeLetter } from '../utils/capitalize.letter';
+import { FirstLetter } from '../utils/first.letter';
+import moment from 'moment';
+import 'moment/locale/es';
 
-const Card = () => {
+const Card = ({ post }) => {
 
     return (
         <div className='bg-white border border-gray-200 rounded-md shadow overflow-hidden'>
@@ -13,18 +17,18 @@ const Card = () => {
                 <div className='flex items-center space-x-2'>
                     <div className='relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full'>
                         <span className='font-medium text-gray-600'>
-                            KC
+                            {FirstLetter(post.user.name)}
                         </span>
                     </div>
                     <p className='text-sm font-medium text-gray-900 truncate'>
-                        Kendra Contreras
+                        {CapitalizeLetter(post.user.name)}
                     </p>
                 </div>
                 <p className='text-sm text-gray-500 truncate'>
-                    21/05/2024
+                    {moment(post.createdAt).format('L')}
                 </p>
             </div>
-            <img src="https://res.cloudinary.com/dhdxq3mkm/image/upload/v1709551831/mz7hzrqnskrpzp3idq93.jpg" alt="" />
+            <img src={post.img_url} alt="" className='w-full h-full object-cover object-center' />
             <div className='px-1'>
                 <div className='mt-2 flex justify-between'>
                     <div className='space-x-3'>
