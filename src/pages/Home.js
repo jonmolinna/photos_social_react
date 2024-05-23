@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import BodyPages from '../Layout/BodyPages';
 import Card from '../components/Card';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import { usePostDispatch, usePostState } from '../context/post.context';
+import Loading from '../components/Loading';
 
 const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [posts, setPosts] = useState(null);
     const [error, seterror] = useState(null);
     const axiosPrivate = useAxiosPrivate();
+    const dispatch = usePostDispatch();
+    const { posts } = usePostState();
 
     useEffect(() => {
         console.log('Home Photos');
@@ -15,10 +18,10 @@ const Home = () => {
         const getAllPost = async () => {
             try {
                 const response = await axiosPrivate('posts/posts');
-                setPosts(response.data);
-                console.log('Posts', response.data);
+                dispatch({ type: 'GET_ALL_POSTS', payload: response.data })
             } catch (error) {
                 console.log('Error', error);
+                // seterror(error)
             } finally {
                 setIsLoading(false)
             }
@@ -26,18 +29,26 @@ const Home = () => {
 
         getAllPost();
 
-    }, []);
+    }, [axiosPrivate, dispatch]);
 
     return (
         <BodyPages>
             <div className='pt-20'>
-                <div className='space-y-4'>
-                    {
-                        posts && posts.map((post, index) => (
-                            <Card key={index} post={post} />
-                        ))
-                    }
-                </div>
+                {
+                    isLoading ? (
+                        <div className='flex items-center justify-center w-56 h-[calc(100vh-80px)] mx-auto'>
+                            <Loading />
+                        </div>
+                    ) : (
+                        <div className='space-y-4'>
+                            {
+                                posts && posts.map((post, index) => (
+                                    <Card key={index} post={post} />
+                                ))
+                            }
+                        </div>
+                    )
+                }
             </div>
         </BodyPages>
     )
