@@ -1,9 +1,21 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const ButtonIcon = ({ Icon }) => {
+const ButtonIcon = ({ Icon, handleClick, bgColor }) => {
+
+    console.log('YOOO', bgColor);
+
+    const btnStyle = classNames(
+        'h-8',
+        'w-8',
+        { bgcolor: bgColor },
+    )
+
     return (
-        <button>
-            <Icon className="h-8 w-8" />
+        <button
+            onClick={() => handleClick()}
+        >
+            <Icon className={btnStyle} />
         </button>
     )
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import ButtonIcon from './ButtonIcon';
-import { CiHeart } from "react-icons/ci";
 import { CiChat1 } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 import { CiPaperplane } from "react-icons/ci";
@@ -8,8 +7,11 @@ import { CapitalizeLetter } from '../utils/capitalize.letter';
 import { FirstLetter } from '../utils/first.letter';
 import moment from 'moment';
 import 'moment/locale/es';
+import LikeButton from './LikeButton';
+import { useAuthState } from '../context/authentication.context';
 
 const Card = ({ post }) => {
+    const { auth } = useAuthState();
 
     return (
         <div className='bg-white border border-gray-200 rounded-md shadow overflow-hidden'>
@@ -32,8 +34,10 @@ const Card = ({ post }) => {
             <div className='px-1'>
                 <div className='mt-2 flex justify-between'>
                     <div className='space-x-3'>
-                        <ButtonIcon
-                            Icon={CiHeart}
+                        <LikeButton
+                            user={auth}
+                            likes={post.likes}
+                            postId={post._id}
                         />
                         <ButtonIcon
                             Icon={CiChat1}
