@@ -47,9 +47,13 @@ const Card = ({ post }) => {
                         Icon={CiBookmark}
                     />
                 </div>
-                <p className='text-gray-900 font-normal'>
-                    <span className='font-medium'>129</span> Me gusta
-                </p>
+                {
+                    post.likes.length > 0 && (
+                        <p className='text-gray-900 font-normal'>
+                            <span className='font-medium'>{post.likes.length}</span> Me gusta
+                        </p>
+                    )
+                }
                 <div>
                     <p className='text-gray-900 font-normal text-sm'>
                         <span className='font-medium mr-1'>Kendra Contreras</span>

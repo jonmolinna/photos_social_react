@@ -1,14 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const ButtonIcon = ({ Icon, handleClick, bgColor }) => {
-
-    console.log('YOOO', bgColor);
+const ButtonIcon = ({ Icon, handleClick, textColor = 'text-gray-600' }) => {
 
     const btnStyle = classNames(
         'h-8',
         'w-8',
-        { bgcolor: bgColor },
+        textColor,
     )
 
     return (
