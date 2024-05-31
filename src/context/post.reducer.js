@@ -15,6 +15,16 @@ const postReducer = (state, action) => {
                 ...state,
             }
         }
+        case 'BOOK_MARK_POST': {
+            const { idPost, bookmark } = action.payload;
+            const post = state.posts.find(post => post._id === idPost);
+
+            return post ? {
+                posts: state.posts.map(item => item._id === post._id ? { ...item, bookmark: bookmark } : item)
+            } : {
+                ...state,
+            }
+        }
         default:
             return state;
     }

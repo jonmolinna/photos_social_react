@@ -1,14 +1,14 @@
 import React from 'react';
 import ButtonIcon from './ButtonIcon';
 import { CiChat1 } from "react-icons/ci";
-import { CiBookmark } from "react-icons/ci";
-import { CiPaperplane } from "react-icons/ci";
 import { CapitalizeLetter } from '../utils/capitalize.letter';
 import { FirstLetter } from '../utils/first.letter';
 import moment from 'moment';
 import 'moment/locale/es';
 import LikeButton from './LikeButton';
 import { useAuthState } from '../context/authentication.context';
+import BookMarkButton from './BookMarkButton';
+import Comments from './Comments';
 
 const Card = ({ post }) => {
     const { auth } = useAuthState();
@@ -43,8 +43,10 @@ const Card = ({ post }) => {
                             Icon={CiChat1}
                         />
                     </div>
-                    <ButtonIcon
-                        Icon={CiBookmark}
+                    <BookMarkButton
+                        user={auth}
+                        bookMark={post.bookmark}
+                        postId={post._id}
                     />
                 </div>
                 {
@@ -63,16 +65,7 @@ const Card = ({ post }) => {
                 <p className='text-sm text-gray-500'>
                     Ver los 24 comentarios
                 </p>
-                <div className='mt-1 mb-1 flex items-center'>
-                    <input
-                        type="text"
-                        placeholder='Agrega un comentario...'
-                        className='block w-full p-2 text-gray-900 text-sm ring-0 outline-none'
-                    />
-                    <button>
-                        <CiPaperplane className='w-6 h-6 text-gray-500' />
-                    </button>
-                </div>
+                <Comments />
             </div>
         </div>
     )
