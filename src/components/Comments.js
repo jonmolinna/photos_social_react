@@ -1,6 +1,8 @@
 import React from 'react';
 import { CiPaperplane } from "react-icons/ci";
 import useForm from '../hooks/useForm';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import Comment from './Comment';
 
 const initialForm = {
     comment: '',
@@ -10,20 +12,29 @@ const initialFormFocus = {
     comment: false,
 };
 
-const Comments = () => {
+const Comments = ({ postId, comments }) => {
     const { form, handleChange, creanForm } = useForm(initialForm, initialFormFocus);
+    const axiosPrivate = useAxiosPrivate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log('Add Comment', form.comment);
-        creanForm();
+        try {
+            const response = await axiosPrivate.post(`posts/post_comment/${postId}`, JSON.stringify({ comment: form.comment }))
+            console.log('>>>><', response.data);
+            creanForm();
+        } catch (err) {
+            console.log('Error', err);
+        }
     };
 
     return (
         <React.Fragment>
             <div>
-                <p>Lista de comentarios</p>
+                {
+                    comments && comments.map(comment => (
+                        <Comment key={comment._id} comment={comment} />
+                    ))
+                }
             </div>
             <form onSubmit={handleSubmit} className='mt-1 mb-1 flex items-center'>
                 <input

@@ -65,7 +65,10 @@ const Card = ({ post }) => {
                 <p className='text-sm text-gray-500'>
                     Ver los 24 comentarios
                 </p>
-                <Comments />
+                <Comments
+                    postId={post._id}
+                    comments={post.comments}
+                />
             </div>
         </div>
     )
