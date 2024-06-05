@@ -3,6 +3,7 @@ import { CiPaperplane } from "react-icons/ci";
 import useForm from '../hooks/useForm';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import Comment from './Comment';
+import { usePostDispatch } from '../context/post.context';
 
 const initialForm = {
     comment: '',
@@ -15,12 +16,19 @@ const initialFormFocus = {
 const Comments = ({ postId, comments }) => {
     const { form, handleChange, creanForm } = useForm(initialForm, initialFormFocus);
     const axiosPrivate = useAxiosPrivate()
+    const dispatch = usePostDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axiosPrivate.post(`posts/post_comment/${postId}`, JSON.stringify({ comment: form.comment }))
-            console.log('>>>><', response.data);
+            const response = await axiosPrivate.post(`posts/post_comment/${postId}`, JSON.stringify({ comment: form.comment }));
+            dispatch({
+                type: 'ADD_COMMENT_TO_POST',
+                payload: {
+                    idPost: postId,
+                    comment: response.data,
+                }
+            });
             creanForm();
         } catch (err) {
             console.log('Error', err);
@@ -29,7 +37,7 @@ const Comments = ({ postId, comments }) => {
 
     return (
         <React.Fragment>
-            <div>
+            <div className='space-y-2 max-h-[120px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin'>
                 {
                     comments && comments.map(comment => (
                         <Comment key={comment._id} comment={comment} />

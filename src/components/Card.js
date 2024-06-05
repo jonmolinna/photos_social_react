@@ -62,7 +62,7 @@ const Card = ({ post }) => {
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, autem.
                     </p>
                 </div>
-                <p className='text-sm text-gray-500'>
+                <p className='text-sm text-gray-500 mb-2'>
                     Ver los 24 comentarios
                 </p>
                 <Comments

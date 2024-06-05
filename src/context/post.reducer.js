@@ -2,6 +2,7 @@ const postReducer = (state, action) => {
     switch (action.type) {
         case 'GET_ALL_POSTS': {
             return {
+                ...state,
                 posts: action.payload,
             }
         }
@@ -10,6 +11,7 @@ const postReducer = (state, action) => {
             const post = state.posts.find(post => post._id === idPost);
 
             return post ? {
+                ...state,
                 posts: state.posts.map(item => item._id === post._id ? { ...item, likes: like } : item)
             } : {
                 ...state,
@@ -20,8 +22,26 @@ const postReducer = (state, action) => {
             const post = state.posts.find(post => post._id === idPost);
 
             return post ? {
+                ...state,
                 posts: state.posts.map(item => item._id === post._id ? { ...item, bookmark: bookmark } : item)
             } : {
+                ...state,
+            }
+        }
+        case 'ADD_COMMENT_TO_POST': {
+            const { idPost, comment } = action.payload;
+            console.log('AQUIII', { idPost, comment });
+            const post = state.posts.find(post => post._id === idPost);
+
+            return post ? {
+                ...state,
+                posts: state.posts.map(item => item._id === post._id ? { ...item, comments: [comment, ...item.comments] } : item)
+            } : {
+                ...state,
+            }
+        }
+        case 'DELETE_COMMENT_TO_POST': {
+            return {
                 ...state,
             }
         }
