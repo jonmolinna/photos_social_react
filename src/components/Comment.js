@@ -4,8 +4,32 @@ import { FirstLetter } from '../utils/first.letter';
 import { CapitalizeLetter } from '../utils/capitalize.letter';
 import moment from 'moment';
 import 'moment/locale/es';
+import { useAuthState } from '../context/authentication.context';
+import { axiosPrivate } from '../utils/axios';
+import { usePostDispatch } from '../context/post.context';
 
-const Comment = ({ comment }) => {
+const Comment = ({ postId, comment }) => {
+    const { auth } = useAuthState();
+    const isUser = auth?._id === comment?.user?._id;
+    const idComment = comment._id;
+    const dispatch = usePostDispatch()
+
+    const handleDeleteComment = async () => {
+        try {
+            const response = await axiosPrivate.put(`posts/post_comment/${postId}/${idComment}`);
+            const comments = response.data;
+            dispatch({
+                type: 'DELETE_COMMENT_TO_POST',
+                payload: {
+                    comments,
+                    postId,
+                }
+            });
+
+        } catch (error) {
+            console.log('Error', error);
+        }
+    }
 
     return (
         <div className='flex'>
@@ -25,11 +49,15 @@ const Comment = ({ comment }) => {
                     <span className='font-medium text-xs text-gray-500'>
                         {moment(comment.createdAt).format('L')}
                     </span>
-                    <div>
-                        <button>
-                            <CiTrash />
-                        </button>
-                    </div>
+                    {
+                        isUser && (
+                            <div>
+                                <button onClick={() => handleDeleteComment()}>
+                                    <CiTrash className='text-gray-700' />
+                                </button>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

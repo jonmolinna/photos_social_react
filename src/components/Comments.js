@@ -40,7 +40,11 @@ const Comments = ({ postId, comments }) => {
             <div className='space-y-2 max-h-[120px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin'>
                 {
                     comments && comments.map(comment => (
-                        <Comment key={comment._id} comment={comment} />
+                        <Comment
+                            key={comment._id}
+                            comment={comment}
+                            postId={postId}
+                        />
                     ))
                 }
             </div>

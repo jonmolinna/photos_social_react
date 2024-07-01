@@ -30,7 +30,6 @@ const postReducer = (state, action) => {
         }
         case 'ADD_COMMENT_TO_POST': {
             const { idPost, comment } = action.payload;
-            console.log('AQUIII', { idPost, comment });
             const post = state.posts.find(post => post._id === idPost);
 
             return post ? {
@@ -41,7 +40,13 @@ const postReducer = (state, action) => {
             }
         }
         case 'DELETE_COMMENT_TO_POST': {
-            return {
+            const { postId, comments } = action.payload;
+            const post = state.posts.find(post => post._id === postId);
+
+            return post ? {
+                ...state,
+                posts: state.posts.map(item => item._id === post._id ? { ...item, comments: comments } : item)
+            } : {
                 ...state,
             }
         }

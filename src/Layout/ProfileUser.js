@@ -18,8 +18,7 @@ const ProfileUser = () => {
                 dispatch({ type: 'GET_PROFILE_START' });
 
                 const res = await axiosPrivate.get('auth/profile');
-                dispatch({ type: 'GET_PROFILE_SUCCESS', payload: res.data })
-                console.log('YOOOO Hola Mundo');
+                dispatch({ type: 'GET_PROFILE_SUCCESS', payload: res.data });
 
             } catch (error) {
                 dispatch({ type: 'GET_PROFILE_USER_FAILURE' })

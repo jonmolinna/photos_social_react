@@ -16,8 +16,8 @@ const LikeButton = ({ user, likes, postId }) => {
 
     const handleLike = async () => {
         try {
-            const res = await axiosPrivate.post(`posts/post_like/${postId}`)
-            dispatch({ type: 'LIKE_POST', payload: { idPost: postId, like: res.data } })
+            const res = await axiosPrivate.post(`posts/post_like/${postId}`);
+            dispatch({ type: 'LIKE_POST', payload: { idPost: postId, like: res.data } });
         } catch (error) {
             console.log('ERROR', error);
         }

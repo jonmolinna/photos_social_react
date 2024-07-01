@@ -1,6 +1,4 @@
 import React from 'react';
-import ButtonIcon from './ButtonIcon';
-import { CiChat1 } from "react-icons/ci";
 import { CapitalizeLetter } from '../utils/capitalize.letter';
 import { FirstLetter } from '../utils/first.letter';
 import moment from 'moment';
@@ -9,6 +7,7 @@ import LikeButton from './LikeButton';
 import { useAuthState } from '../context/authentication.context';
 import BookMarkButton from './BookMarkButton';
 import Comments from './Comments';
+import CommentButton from './CommentButton';
 
 const Card = ({ post }) => {
     const { auth } = useAuthState();
@@ -39,9 +38,7 @@ const Card = ({ post }) => {
                             likes={post.likes}
                             postId={post._id}
                         />
-                        <ButtonIcon
-                            Icon={CiChat1}
-                        />
+                        <CommentButton />
                     </div>
                     <BookMarkButton
                         user={auth}
