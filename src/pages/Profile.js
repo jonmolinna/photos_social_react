@@ -4,25 +4,35 @@ import BodyPages from '../Layout/BodyPages';
 const Profile = () => {
     return (
         <BodyPages>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
-            <p>Profile Pages</p>
+            <div className='pt-20'>
+                <div>
+                    <p>Avatar</p>
+                    <div>
+                        <p>Info Profile</p>
+                    </div>
+                </div>
+                <div>
+                </div>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+                <p>Profile Pages</p>
+            </div>
         </BodyPages>
     )
 };

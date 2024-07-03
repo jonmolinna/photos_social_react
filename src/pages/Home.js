@@ -20,7 +20,6 @@ const Home = () => {
                 const response = await axiosPrivate('posts/posts');
                 dispatch({ type: 'GET_ALL_POSTS', payload: response.data })
             } catch (error) {
-                console.log('Error', error);
                 // seterror(error)
             } finally {
                 setIsLoading(false)
