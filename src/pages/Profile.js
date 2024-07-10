@@ -34,11 +34,11 @@ const Profile = () => {
                             quantity={7}
                         />
                     </div>
-                    <div className='mt-3 flex justify-center'>
-                        <button className='text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-md text-sm px-5 py-1.5'>
-                            Subir Publicación
-                        </button>
-                    </div>
+                </div>
+                <div className='mt-3 flex justify-center'>
+                    <button className='text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-md text-sm px-5 py-1.5'>
+                        Subir Publicación
+                    </button>
                 </div>
                 <div>
                     <Tabs />

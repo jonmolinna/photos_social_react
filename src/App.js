@@ -21,7 +21,7 @@ function App() {
           <Route element={<ProfileUser />}>
             <Route element={<RequireAuth />}>
               <Route path='/' element={<Home />} />
-              <Route path='/profile' element={<Profile />} />
+              <Route path='/profile/:email' element={<Profile />} />
             </Route>
           </Route>
         </Route>
