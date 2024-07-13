@@ -7,6 +7,7 @@ import PersistLogin from './Layout/PersistLogin';
 import ProfileUser from './Layout/ProfileUser';
 import RequireAuth from './Layout/RequireAuth';
 import Profile from './pages/Profile';
+import Upload from './pages/Upload';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route element={<RequireAuth />}>
               <Route path='/' element={<Home />} />
               <Route path='/profile/:email' element={<Profile />} />
+              <Route path='/upload' element={<Upload />} />
             </Route>
           </Route>
         </Route>

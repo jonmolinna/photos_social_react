@@ -3,6 +3,7 @@ import BodyPages from '../Layout/BodyPages';
 import Badge from '../components/Badge';
 import { Square2StackIcon, HandThumbUpIcon, BookmarkIcon } from '@heroicons/react/24/outline'
 import Tabs from '../components/Tabs';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     return (
@@ -36,9 +37,9 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className='mt-3 flex justify-center'>
-                    <button className='text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-md text-sm px-5 py-1.5'>
+                    <Link to='/upload' className='text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-md text-sm px-5 py-1.5'>
                         Subir Publicación
-                    </button>
+                    </Link>
                 </div>
                 <div>
                     <Tabs />
