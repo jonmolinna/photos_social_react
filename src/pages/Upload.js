@@ -3,12 +3,15 @@ import BodyPages from '../Layout/BodyPages';
 import { ArrowUpTrayIcon } from '@heroicons/react/24/outline'
 import { axiosPrivate } from '../utils/axios';
 import Loading from '../components/Loading';
+import toast, { Toaster } from 'react-hot-toast';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const Upload = () => {
     const [imagen, setImagen] = useState(null);
     const [showImagen, setShowImagen] = useState(null);
     const [comment, setComment] = useState('');
     const [loading, setLoading] = useState(false);
+    const location = useLocation();
 
     const handleChange = (event) => {
         const file = event.target.files[0];
@@ -37,14 +40,24 @@ const Upload = () => {
                 }
             };
 
-            const response = await axiosPrivate.post(url, formData, config);
+            await axiosPrivate.post(url, formData, config);
             setComment("");
             setImagen(null);
             setShowImagen(null)
-            console.log('YOOO', response);
+            toast.success('Se público una publicación');
 
         } catch (error) {
-            console.log('Error', error);
+            console.log('Error', error.response);
+            if (error.response.data.statusCode === 500) {
+                toast.error('Ocurrio un error en el Servidor');
+            }
+            else if (error.response.data.statusCode === 401) {
+                toast.error('No tienes autorización, Inicie Sesión');
+                <Navigate to="/login" state={{ from: location }} replace />
+            }
+            else {
+                toast.error('Ocurrio un error');
+            }
         } finally {
             setLoading(false)
         }
@@ -116,6 +129,9 @@ const Upload = () => {
                     )
                 }
             </div>
+            <Toaster
+                position="top-right"
+            />
         </BodyPages>
     )
 }

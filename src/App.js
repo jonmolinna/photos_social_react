@@ -8,6 +8,9 @@ import ProfileUser from './Layout/ProfileUser';
 import RequireAuth from './Layout/RequireAuth';
 import Profile from './pages/Profile';
 import Upload from './pages/Upload';
+import Posts from './pages/Posts';
+import Likes from './pages/Likes';
+import Saved from './pages/Saved';
 
 function App() {
   return (
@@ -22,7 +25,11 @@ function App() {
           <Route element={<ProfileUser />}>
             <Route element={<RequireAuth />}>
               <Route path='/' element={<Home />} />
-              <Route path='/profile/:email' element={<Profile />} />
+              <Route path='/:email' element={<Profile />}>
+                <Route path='/:email/' element={<Posts />} />
+                <Route path='/:email/saved' element={<Saved />} />
+                <Route path='/:email/likes' element={<Likes />} />
+              </Route>
               <Route path='/upload' element={<Upload />} />
             </Route>
           </Route>

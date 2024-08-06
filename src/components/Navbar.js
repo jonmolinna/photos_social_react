@@ -3,8 +3,10 @@ import { CiLogout } from "react-icons/ci";
 import { NavLink } from 'react-router-dom';
 import { HomeIcon, UserIcon } from '@heroicons/react/24/outline'
 import { HomeIcon as HomeIconSolid, UserIcon as UserIconSolid } from '@heroicons/react/24/solid'
+import { useAuthState } from '../context/authentication.context';
 
 const Navbar = () => {
+    const { auth } = useAuthState();
 
     return (
         <div className='bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200'>
@@ -16,7 +18,7 @@ const Navbar = () => {
                         )
                     }
                 </NavLink>
-                <NavLink to='/profile'>
+                <NavLink to={'/' + auth?.email}>
                     {
                         ({ isActive }) => (
                             isActive ? (<UserIconSolid className='w-7 h-7' />) : (<UserIcon className='w-7 h-7' />)

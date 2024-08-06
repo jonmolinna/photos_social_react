@@ -8,6 +8,7 @@ import { useAuthState } from '../context/authentication.context';
 import BookMarkButton from './BookMarkButton';
 import Comments from './Comments';
 import CommentButton from './CommentButton';
+import { Link } from 'react-router-dom';
 
 const Card = ({ post }) => {
     const { auth } = useAuthState();
@@ -21,9 +22,9 @@ const Card = ({ post }) => {
                             {FirstLetter(post.user.name)}
                         </span>
                     </div>
-                    <p className='text-sm font-medium text-gray-900 truncate'>
+                    <Link to={`/${post.user.email}`} className='text-sm font-medium text-gray-900 truncate'>
                         {CapitalizeLetter(post.user.name)}
-                    </p>
+                    </Link>
                 </div>
                 <p className='text-sm text-gray-500 truncate'>
                     {moment(post.createdAt).format('L')}

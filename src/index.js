@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RegisterProvider } from './context/register.user.context';
 import { AuthProvider } from './context/authentication.context';
 import { PostProvider } from './context/post.context';
+import { ProfileProvider } from './context/profile.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,9 +18,11 @@ root.render(
       <RegisterProvider>
         <AuthProvider>
           <PostProvider>
-            <Routes>
-              <Route path='/*' element={<App />} />
-            </Routes>
+            <ProfileProvider>
+              <Routes>
+                <Route path='/*' element={<App />} />
+              </Routes>
+            </ProfileProvider>
           </PostProvider>
         </AuthProvider>
       </RegisterProvider>
