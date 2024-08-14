@@ -6,6 +6,10 @@ const profileReducer = (state, action) => {
                 profile: action.payload,
             }
         }
+        case 'PROFILE_CREAR':
+            return {
+                profile: null,
+            }
         default:
             return state;
     }

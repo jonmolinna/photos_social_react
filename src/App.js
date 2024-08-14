@@ -11,6 +11,7 @@ import Upload from './pages/Upload';
 import Posts from './pages/Posts';
 import Likes from './pages/Likes';
 import Saved from './pages/Saved';
+import ProfilePage from './Layout/ProfilePage';
 
 function App() {
   return (
@@ -25,11 +26,13 @@ function App() {
           <Route element={<ProfileUser />}>
             <Route element={<RequireAuth />}>
               <Route path='/' element={<Home />} />
-              <Route path='/:email' element={<Profile />}>
-                <Route path='/:email/' element={<Posts />} />
-                <Route path='/:email/saved' element={<Saved />} />
-                <Route path='/:email/likes' element={<Likes />} />
-              </Route>
+              <Route element={<ProfilePage />} >
+                <Route path='/:email' element={<Profile />}>
+                  <Route path='/:email/' element={<Posts />} />
+                  <Route path='/:email/saved' element={<Saved />} />
+                  <Route path='/:email/likes' element={<Likes />} />
+                </Route>
+              </Route >
               <Route path='/upload' element={<Upload />} />
             </Route>
           </Route>
