@@ -47,6 +47,7 @@ const Login = () => {
             creanForm();
             navigate(from, { replace: true });
         } catch (err) {
+            console.log('Error', err)
             dispatch({ type: 'LOGIN_FAILURE', payload: 'Credenciales incorrectas' });
         }
     }

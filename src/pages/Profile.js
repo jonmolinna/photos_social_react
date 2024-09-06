@@ -15,6 +15,7 @@ const Profile = () => {
     const { profile } = useProfileState();
     const isUser = profile?._id === auth?._id;
     const dispatch = useProfileDispatch();
+    console.log('>>>>>> Profile', profile)
 
     useEffect(() => {
         return () => {
@@ -66,7 +67,7 @@ const Profile = () => {
                                 )
                             }
                             <div>
-                                <Tabs />
+                                <Tabs profile={profile} />
                             </div>
                             <Outlet />
                         </div>

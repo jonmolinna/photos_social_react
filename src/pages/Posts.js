@@ -11,14 +11,12 @@ const Posts = () => {
         try {
             const response = await axiosPrivate(`posts/post_user/${id}`);
             setPosts(response.data);
-            console.log(response.data);
         } catch (error) {
-            console.log(error.response)
+            console.log('Posts Pages', error.response)
         }
     }, []);
 
     useEffect(() => {
-        console.log('POSTS PAGES')
         if (profile) {
             getAllPostUserById(profile?._id)
         }
