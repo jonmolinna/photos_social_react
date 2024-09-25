@@ -12,6 +12,8 @@ import Posts from './pages/Posts';
 import Likes from './pages/Likes';
 import Saved from './pages/Saved';
 import ProfilePage from './Layout/ProfilePage';
+import Post from './pages/Post';
+import Photo from './Layout/Photo';
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
                   <Route path='/:email/likes' element={<Likes />} />
                 </Route>
               </Route >
+              <Route element={<Photo />}>
+                <Route path='/p/:postId' element={<Post />} />
+              </Route>
               <Route path='/upload' element={<Upload />} />
             </Route>
           </Route>
